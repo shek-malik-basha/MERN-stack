@@ -1,11 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors - Simple</title>
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .buttons {
+      margin: 30px 0;
+    }
+
+    button {
+      font-size: 50px;
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border: 2px solid #555;
+      border-radius: 15px;
+      background-color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e0e0e0;
+    }
+
+    #result {
+      font-size: 28px;
+      margin-top: 40px;
+      min-height: 50px;
+      color: #444;
+    }
+
+    #message {
+      font-size: 22px;
+      color: #666;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    
+
+  <h1>Rock Paper Scissors</h1>
+
+  <div class="buttons">
+    <button onclick="play('Rock')">✊ Rock</button>
+    <button onclick="play('Paper')">✋ Paper</button>
+    <button onclick="play('Scissors')">✌ Scissors</button>
+  </div>
+
+  <div id="result">Click any button to play!</div>
+  <div id="message"></div>
+
+  <script>
+    function play(playerChoice) {
+      const choices = ["Rock", "Paper", "Scissors"];
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      let resultText = "";
+      let messageText = `You chose: ${playerChoice}  |  Computer chose: ${computerChoice}`;
+
+      if (playerChoice === computerChoice) {
+        resultText = "It's a Tie!";
+      }
+      else if (
+        (playerChoice === "Rock" && computerChoice === "Scissors") ||
+        (playerChoice === "Paper" && computerChoice === "Rock") ||
+        (playerChoice === "Scissors" && computerChoice === "Paper")
+      ) {
+        resultText = "You Win! 🎉";
+      }
+      else {
+        resultText = "Computer Wins 😔";
+      }
+
+      document.getElementById("result").innerText = resultText;
+      document.getElementById("message").innerText = messageText;
+    }
+  </script>
+
 </body>
 </html>
